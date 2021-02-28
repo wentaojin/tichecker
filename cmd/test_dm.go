@@ -24,8 +24,8 @@ import (
 )
 
 func main() {
-	dsn1 := "root:marvin@tcp(172.16.4.206:3307)/?charset=utf8mb4"
-	dsn2 := "root:marvin@tcp(172.16.4.206:3308)/?charset=utf8mb4"
+	dsn1 := "root:marvin@tcp(192.168.2.90:3307)/?charset=utf8mb4"
+	dsn2 := "root:marvin@tcp(192.168.2.90:3308)/?charset=utf8mb4"
 
 	engine1, err := newMySQLEngine(dsn1)
 	if err != nil {

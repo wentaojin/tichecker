@@ -24,9 +24,9 @@ import (
 	"go.uber.org/zap"
 
 	"github.com/WentaoJin/tichecker/db"
+	"github.com/WentaoJin/tichecker/inspector"
 	"github.com/WentaoJin/tichecker/pkg/config"
 	"github.com/WentaoJin/tichecker/pkg/other"
-	"github.com/WentaoJin/tichecker/sync_diff_inspector"
 	"github.com/xxjwxc/gowp/workpool"
 )
 
@@ -109,14 +109,14 @@ func startOnlineChecker(cfg *config.Cfg) error {
 			for i := 0; i < len(rangSQLSlice); i++ {
 				fileName := fmt.Sprintf("%s/%s/%s_diff%d.toml", cfg.SyncDiffInspectorConfig.ConfigOutputDir,
 					tbl, tbl, i+1)
-				ok, err := sync_diff_inspector.SyncDiffInspector(fileName)
+				ok, err := inspector.SyncDiffInspector(fileName)
 				if err != nil {
 					return err
 				}
 				// 如果检查失败，则重试
 				if !ok {
 					for j := 0; j <= cfg.TiCheckerConfig.CheckRetry; j++ {
-						ok, err := sync_diff_inspector.SyncDiffInspector(fileName)
+						ok, err := inspector.SyncDiffInspector(fileName)
 						if err != nil {
 							return err
 						}
