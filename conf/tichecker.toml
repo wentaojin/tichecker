@@ -7,8 +7,8 @@ schema = "dm_marvin"
 tables = ["t_marvin"]
 # 检查表基于该字段按照分页行数划分，基于该字段划分范围检查，检查失败会按要求重试
 base-table-column = "id"
-# 检查表分页行数，尽可能小，会相对检查更准
-split-table-rows = 1
+# 检查表分页行数，尽可能小，会相对检查更准，但是不建议太小，否则大表会检查很久
+split-table-rows = 2000
 # tichecker 并发数
 worker-threads = 4
 # 检查失败重试等待间隔，单位：秒
@@ -16,7 +16,7 @@ time-sleep = 10
 # 检查失败重试次数
 check-retry = 10
 
-[sync-diff-inspector]
+[inspector]
 # 表配置文件模板存放位置,用于读取
 # 需要手工创建目录以及按命名格式创建并修改模板文件
 # 文件名格式：table_diff.tmpl

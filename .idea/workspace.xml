@@ -2,15 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5227a6ae-760f-4f63-beb3-15ad55b3f9f7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmd/tichecker" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/test_dm.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/test_dm.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/conf/tichecker.toml" beforeDir="false" afterPath="$PROJECT_DIR$/conf/tichecker.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/checker.go" beforeDir="false" afterPath="$PROJECT_DIR$/db/checker.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pkg/checker/prepare.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/checker/prepare.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sync_diff_inspector/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/inspector/config.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sync_diff_inspector/diff.go" beforeDir="false" afterPath="$PROJECT_DIR$/inspector/diff.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sync_diff_inspector/report.go" beforeDir="false" afterPath="$PROJECT_DIR$/inspector/report.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sync_diff_inspector/sync_diff_inspector.go" beforeDir="false" afterPath="$PROJECT_DIR$/inspector/inspector.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/config/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/config/config.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,6 +29,9 @@
     <option name="indexEntireGoPath" value="false" />
   </component>
   <component name="ProjectId" id="1p2yUSqtS6LQEKUKzLiG1SFT4L7" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -82,6 +82,9 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>

@@ -185,10 +185,10 @@ func GenerateSyncDiffInspectorCfg(cfg *config.Cfg, tableName string) error {
 	var tmpCfg []TemplateCfg
 	for i, rs := range rangSQLSlice {
 		tcfg := TemplateCfg{
-			ChunkSize:         cfg.SyncDiffInspectorConfig.ChunkSize,
-			CheckThreadsCount: cfg.SyncDiffInspectorConfig.CheckThreadsCount,
+			ChunkSize:         cfg.InspectorConfig.ChunkSize,
+			CheckThreadsCount: cfg.InspectorConfig.CheckThreadsCount,
 			FixSQLFile: fmt.Sprintf("%s/%s/%s_fixed%d.sql",
-				cfg.SyncDiffInspectorConfig.FixSQLDir,
+				cfg.InspectorConfig.FixSQLDir,
 				tableName, tableName, i+1),
 			RangCond: rs,
 		}
@@ -198,9 +198,9 @@ func GenerateSyncDiffInspectorCfg(cfg *config.Cfg, tableName string) error {
 
 	log.Info("maybe generate table diff toml file", zap.Int("counts", len(tmpCfg)))
 	for i, toml := range tmpCfg {
-		tmplFile := fmt.Sprintf("%s/%s_diff.tmpl", cfg.SyncDiffInspectorConfig.ConfigTemplateDir,
+		tmplFile := fmt.Sprintf("%s/%s_diff.tmpl", cfg.InspectorConfig.ConfigTemplateDir,
 			tableName)
-		outputFile := fmt.Sprintf("%s/%s/%s_diff%d.toml", cfg.SyncDiffInspectorConfig.ConfigOutputDir,
+		outputFile := fmt.Sprintf("%s/%s/%s_diff%d.toml", cfg.InspectorConfig.ConfigOutputDir,
 			tableName,
 			tableName,
 			i+1)

@@ -23,8 +23,8 @@ import (
 )
 
 type Cfg struct {
-	TiCheckerConfig         TiCheckerConfig         `toml:"tichecker" json:"tichecker"`
-	SyncDiffInspectorConfig SyncDiffInspectorConfig `toml:"sync-diff-inspector" json:"sync-diff-inspector"`
+	TiCheckerConfig TiCheckerConfig `toml:"tichecker" json:"tichecker"`
+	InspectorConfig InspectorConfig `toml:"sync-diff-inspector" json:"sync-diff-inspector"`
 }
 
 type TiCheckerConfig struct {
@@ -38,7 +38,7 @@ type TiCheckerConfig struct {
 	CheckRetry      int      `toml:"check-retry" json:"check-retry"`
 }
 
-type SyncDiffInspectorConfig struct {
+type InspectorConfig struct {
 	ConfigTemplateDir string `toml:"config-template-dir" json:"config-template-dir"`
 	ConfigOutputDir   string `toml:"config-output-dir" json:"config-output-dir"`
 	FixSQLDir         string `toml:"fix-sql-dir" json:"fix-sql-dir"`

@@ -41,10 +41,10 @@ func prepareCheckerENV(cfg *config.Cfg) error {
 	}
 
 	// 清理移除表配置文件输出位目录以及表检查结果输出目录
-	if err := other.RemovePath(cfg.SyncDiffInspectorConfig.ConfigOutputDir); err != nil {
+	if err := other.RemovePath(cfg.InspectorConfig.ConfigOutputDir); err != nil {
 		return err
 	}
-	if err := other.RemovePath(cfg.SyncDiffInspectorConfig.FixSQLDir); err != nil {
+	if err := other.RemovePath(cfg.InspectorConfig.FixSQLDir); err != nil {
 		return err
 	}
 
@@ -63,7 +63,7 @@ func prepareCheckerENV(cfg *config.Cfg) error {
 	// 2、初始化 checkpoint 表记录
 	// 3、生成 sync-diff-inspector 配置文件
 	for _, tbl := range cfg.TiCheckerConfig.Tables {
-		cfgPath := fmt.Sprintf("%s/%s/", cfg.SyncDiffInspectorConfig.ConfigOutputDir, tbl)
+		cfgPath := fmt.Sprintf("%s/%s/", cfg.InspectorConfig.ConfigOutputDir, tbl)
 		if !other.FileAndDirIsExist(cfgPath) {
 			log.Info("mkdir config output dir", zap.String("path", cfgPath))
 			if err := other.TouchPath(cfgPath, os.ModePerm); err != nil {
@@ -71,7 +71,7 @@ func prepareCheckerENV(cfg *config.Cfg) error {
 			}
 		}
 
-		fixedPath := fmt.Sprintf("%s/%s/", cfg.SyncDiffInspectorConfig.FixSQLDir, tbl)
+		fixedPath := fmt.Sprintf("%s/%s/", cfg.InspectorConfig.FixSQLDir, tbl)
 		if !other.FileAndDirIsExist(fixedPath) {
 			log.Info("mkdir config fix-sql dir", zap.String("path", fixedPath))
 			if err := other.TouchPath(fixedPath, os.ModePerm); err != nil {
@@ -107,7 +107,7 @@ func startOnlineChecker(cfg *config.Cfg) error {
 			}
 			// 开始 sync-diff-inspector 检查
 			for i := 0; i < len(rangSQLSlice); i++ {
-				fileName := fmt.Sprintf("%s/%s/%s_diff%d.toml", cfg.SyncDiffInspectorConfig.ConfigOutputDir,
+				fileName := fmt.Sprintf("%s/%s/%s_diff%d.toml", cfg.InspectorConfig.ConfigOutputDir,
 					tbl, tbl, i+1)
 				ok, err := inspector.SyncDiffInspector(fileName)
 				if err != nil {
@@ -130,7 +130,7 @@ func startOnlineChecker(cfg *config.Cfg) error {
 
 					// 检查失败，读取 fixed sql 文件并记录 sync_diff_inspector.failure 表
 					fixedSQL := fmt.Sprintf(`%s/%s/%s_fixed%d.sql`,
-						cfg.SyncDiffInspectorConfig.FixSQLDir,
+						cfg.InspectorConfig.FixSQLDir,
 						tbl, tbl, i+1)
 					if err := db.WriteMySQLTableFailureRecord(cfg.TiCheckerConfig.Schema, tbl, fixedSQL); err != nil {
 						return err
