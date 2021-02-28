@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5227a6ae-760f-4f63-beb3-15ad55b3f9f7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/cmd/tichecker" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/conf/tichecker.toml" beforeDir="false" afterPath="$PROJECT_DIR$/conf/tichecker.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/checker.go" beforeDir="false" afterPath="$PROJECT_DIR$/db/checker.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/checker/prepare.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/checker/prepare.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/config/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/config/config.go" afterDir="false" />
-    </list>
+    <list default="true" id="5227a6ae-760f-4f63-beb3-15ad55b3f9f7" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
