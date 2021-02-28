@@ -1,0 +1,37 @@
+[tichecker]
+# 下游 tidb 数据库链接串
+dsn = "marvin:marvin@tcp(192.168.2.90:5000)/?charset=utf8mb4"
+# 检查下游 tidb 目标表 schema
+schema = "dm_marvin"
+# 检查下游 tidb 目标表列表
+tables = ["t_marvin"]
+# 检查表基于该字段按照分页行数划分，基于该字段划分范围检查，检查失败会按要求重试
+base-table-column = "id"
+# 检查表分页行数，尽可能小，会相对检查更准
+split-table-rows = 1
+# tichecker 并发数
+worker-threads = 4
+# 检查失败重试等待间隔，单位：秒
+time-sleep = 10
+# 检查失败重试次数
+check-retry = 10
+
+[sync-diff-inspector]
+# 表配置文件模板存放位置,用于读取
+# 需要手工创建目录以及按命名格式创建并修改模板文件
+# 文件名格式：table_diff.tmpl
+config-template-dir = "/home/tidb/marvin/topology/dm/template"
+
+# 表配置文件输出位置 - 不能更改
+# 输出文件名格式：table_dir/table_diff{{i}}.toml
+config-output-dir = "/home/tidb/marvin/topology/dm/output"
+
+# 表检查结果输出目录 - 不能更改
+# 输出文件名格式：table_dir/table_fixed{{i}}.sql
+fix-sql-dir = "/home/tidb/marvin/topology/dm/fixed"
+
+# diff 二进制检查线程
+check-thread-count = 8
+# sync-diff-inspector 根据主键／唯一键／索引将数据划分为多个 chunk，
+# 对每一个 chunk 的数据进行对比。使用 chunk-size 设置 chunk 的大小
+chunk-size = 1000
