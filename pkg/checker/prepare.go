@@ -47,16 +47,18 @@ func prepareCheckerENV(cfg *config.Cfg) error {
 	}
 
 	// 清理断点表以及失败记录表，防止之前程序异常退出残留记录
-	if err := db.TruncateMySQLTableRecord(); err != nil {
+	if err := db.ClearMySQLTableRecord(cfg.TiCheckerConfig.Schema, cfg.TiCheckerConfig.Tables); err != nil {
 		return err
 	}
 
 	// 清理移除表配置文件输出位目录以及表检查结果输出目录
-	if err := other.RemovePath(cfg.InspectorConfig.ConfigOutputDir); err != nil {
-		return err
-	}
-	if err := other.RemovePath(cfg.InspectorConfig.FixSQLDir); err != nil {
-		return err
+	for _, table := range cfg.TiCheckerConfig.Tables {
+		if err := other.RemovePath(fmt.Sprintf(`%s/%s/`, cfg.InspectorConfig.ConfigOutputDir, table)); err != nil {
+			return err
+		}
+		if err := other.RemovePath(fmt.Sprintf(`%s/%s/`, cfg.InspectorConfig.FixSQLDir, table)); err != nil {
+			return err
+		}
 	}
 
 	return nil

@@ -20,6 +20,7 @@ import (
 	"fmt"
 	"os"
 	"strconv"
+	"strings"
 	"sync"
 	"text/template"
 
@@ -67,27 +68,36 @@ func GatherMySQLTableStatistics(schema, tableName string) error {
 	return nil
 }
 
-// truncate checkpoint 表记录
-func TruncateMySQLTableRecord() error {
-	querySQL := fmt.Sprintf(`TRUNCATE TABLE sync_diff_inspector.checkpoint`)
+// clear checkpoint 表记录
+func ClearMySQLTableRecord(schema string, tables []string) error {
+	var tbl []string
+	for _, t := range tables {
+		tbl = append(tbl, fmt.Sprintf("'%s'", strings.ToUpper(t)))
+	}
+
+	querySQL := fmt.Sprintf(`DELETE FROM sync_diff_inspector.checkpoint WHERE
+	UPPER(schema_name) = UPPER('%s') AND UPPER(table_name) IN (%s)`, schema, strings.Join(tbl, ","))
+
 	log.Info("sql run", zap.String("sql", querySQL))
 	if _, err := Engine.Exec(querySQL); err != nil {
 		return err
 	}
-	querySQL = fmt.Sprintf(`TRUNCATE TABLE sync_diff_inspector.failure`)
+
+	querySQL = fmt.Sprintf(`DELETE FROM sync_diff_inspector.failure WHERE
+	UPPER(schema_name) = UPPER('%s') AND UPPER(table_name) IN (%s)`, schema, strings.Join(tbl, ","))
 	log.Info("sql run", zap.String("sql", querySQL))
 	if _, err := Engine.Exec(querySQL); err != nil {
 		return err
 	}
 
 	querySQL = fmt.Sprintf(`select COUNT(1) AS COUNT
-	from  INFORMATION_SCHEMA.TABLES  where upper(TABLE_SCHEMA) =upper('sync_diff_inspector') and  upper(TABLE_NAME) = upper('chunk')`)
+	from  INFORMATION_SCHEMA.TABLES  where upper(TABLE_SCHEMA) = upper('sync_diff_inspector') and  upper(TABLE_NAME) = upper('chunk')`)
 	_, res, err := Query(Engine, querySQL)
 	if err != nil {
 		return err
 	}
 	if res[0]["COUNT"] != "0" {
-		querySQL = fmt.Sprintf(`TRUNCATE TABLE sync_diff_inspector.chunk`)
+		querySQL = fmt.Sprintf("DELETE FROM sync_diff_inspector.chunk WHERE UPPER(`schema`) = UPPER('%s') AND UPPER(`table`) IN (%s)", schema, strings.Join(tbl, ","))
 		log.Info("sql run", zap.String("sql", querySQL))
 		if _, err := Engine.Exec(querySQL); err != nil {
 			return err
@@ -95,13 +105,13 @@ func TruncateMySQLTableRecord() error {
 	}
 
 	querySQL = fmt.Sprintf(`select COUNT(1) AS COUNT
-	from  INFORMATION_SCHEMA.TABLES  where upper(TABLE_SCHEMA) =upper('sync_diff_inspector') and  upper(TABLE_NAME) = upper('summary')`)
+	from  INFORMATION_SCHEMA.TABLES  where upper(TABLE_SCHEMA) = upper('sync_diff_inspector') and  upper(TABLE_NAME) = upper('summary')`)
 	_, res, err = Query(Engine, querySQL)
 	if err != nil {
 		return err
 	}
 	if res[0]["COUNT"] != "0" {
-		querySQL = fmt.Sprintf(`TRUNCATE TABLE sync_diff_inspector.summary`)
+		querySQL = fmt.Sprintf("DELETE FROM sync_diff_inspector.summary WHERE UPPER(`schema`) = UPPER('%s') AND UPPER(`table`) IN (%s)", schema, strings.Join(tbl, ","))
 		log.Info("sql run", zap.String("sql", querySQL))
 		if _, err := Engine.Exec(querySQL); err != nil {
 			return err

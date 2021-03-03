@@ -21,7 +21,7 @@ use-checksum = true
 only-use-checksum = false
 
 # 是否使用上次校验的 checkpoint，如果开启，则只校验上次未校验以及校验失败的 chunk
-# 对于 tichecker 来说，必须关闭不使用
+# 对于 tichecker 来说，该项必须关闭不使用
 use-checkpoint = false
 
 # 不对比数据
@@ -34,7 +34,7 @@ ignore-struct-check = false
 fix-sql-file = "{{.FixSQLFile}}"
 
 ######################### Tables config #########################
-# 对于 tichecker 来说，必须手工配置
+# 对于 tichecker 来说，以下内容必须手工配置
 # 配置需要对比的目标数据库 tidb 中的表
 [[check-tables]]
 # 库的名称

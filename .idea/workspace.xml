@@ -4,18 +4,9 @@
     <list default="true" id="5227a6ae-760f-4f63-beb3-15ad55b3f9f7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/test_dm.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/test_dm.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/conf/t_marvin_diff.tmpl" beforeDir="false" afterPath="$PROJECT_DIR$/conf/t_marvin_diff.tmpl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/conf/tichecker.toml" beforeDir="false" afterPath="$PROJECT_DIR$/conf/tichecker.toml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db/checker.go" beforeDir="false" afterPath="$PROJECT_DIR$/db/checker.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/db.go" beforeDir="false" afterPath="$PROJECT_DIR$/db/db.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/checker/checker.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/checker/checker.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pkg/checker/prepare.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/checker/prepare.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/config/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/config/config.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/other/other.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/other/other.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

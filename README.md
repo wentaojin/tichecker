@@ -7,7 +7,7 @@ ticheker 工具用于在线 Online 校验 MySQL -> TiDB 基于 [DM](https://docs
 
 使用方式：
 
-- 手工配置在线检验模板并统一放于 config-template-dir 目录，详情模板文件示例见 conf/t_marvin_diff.tmpl，模板文件中除下 {{}} 内容以及部分内容不可配置更改之外，其他可根据需要[手工配置](https://docs.pingcap.com/zh/tidb/stable/sync-diff-inspector-overview#sync-diff-inspector-用户文档)，并且每张检查表都需要一个模板文件，所有检查表会根据模板文件以及 tichecker.toml 配置文件 base-table-column/ split-table-rows 自动生成 sync-diff-inspector 配置文件，模板文件命名格式：tableName_diff.tmpl
+- 手工配置在线检验模板并统一放于 config-template-dir 目录，详情模板文件示例见 conf/t_marvin_diff.tmpl，模板文件中除下 {{}} 内容以及部分内容不可配置更改【配置示例已标注】之外，其他可根据需要[手工配置](https://docs.pingcap.com/zh/tidb/stable/sync-diff-inspector-overview#sync-diff-inspector-用户文档)，并且每张检查表都需要一个模板文件，所有检查表会根据模板文件以及 tichecker.toml 配置文件 base-table-column/ split-table-rows 自动生成 sync-diff-inspector 配置文件，模板文件命名格式：tableName_diff.tmpl
 - 详情配置文件示例见 conf/tichecker.toml
 
 ```
