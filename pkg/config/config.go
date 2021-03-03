@@ -24,7 +24,7 @@ import (
 
 type Cfg struct {
 	TiCheckerConfig TiCheckerConfig `toml:"tichecker" json:"tichecker"`
-	InspectorConfig InspectorConfig `toml:"sync-diff-inspector" json:"sync-diff-inspector"`
+	InspectorConfig InspectorConfig `toml:"inspector" json:"inspector"`
 }
 
 type TiCheckerConfig struct {
@@ -32,6 +32,7 @@ type TiCheckerConfig struct {
 	Schema          string   `toml:"schema" json:"schema"`
 	Tables          []string `toml:"tables",json:"tables"`
 	BaseTableColumn string   `toml:"base-table-column" json:"base-table-column"`
+	IsIndexColumn   bool     `toml:"is-index-column" json:"is-index-column "`
 	SplitTableRows  int      `toml:"split-table-rows" json:"split-table-rows"`
 	WorkerThreads   int      `toml:"worker-threads" json:"worker-threads"`
 	TimeSleep       int      `toml:"time-sleep" json:"time-sleep"`

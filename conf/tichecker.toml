@@ -5,9 +5,14 @@ dsn = "marvin:marvin@tcp(192.168.2.90:5000)/?charset=utf8mb4"
 schema = "dm_marvin"
 # 检查下游 tidb 目标表列表
 tables = ["t_marvin"]
-# 检查表基于该字段按照分页行数划分，基于该字段划分范围检查，检查失败会按要求重试
+# 检查表基于该字段划分范围检查，检查失败会按要求重试
+# 该字段需要是个范围值
+# 1、建议使用全局唯一的字段，比如：时间或者全局 ID、全局 UUID 等字段
+# 2、非全局也是可以，比如：ID,NAME 联合主键，使用 ID 字段，但是可能会比较粗暴
 base-table-column = "id"
-# 检查表分页行数，尽可能小，会相对检查更准，但是不建议太小，否则大表会检查很久
+# 检查表字段 base-table-column 是否存在索引且位于前缀，用于排序
+is-index-column = false
+# 检查表切分行数，尽可能小，会相对检查更准，但是不建议太小，否则大表会检查很久
 split-table-rows = 2000
 # tichecker 并发数
 worker-threads = 4

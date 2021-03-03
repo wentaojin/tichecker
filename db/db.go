@@ -47,7 +47,8 @@ IF
 	id BIGINT PRIMARY KEY NOT NULL auto_increment,
 	schema_name VARCHAR ( 64 ) NOT NULL,
 	table_name VARCHAR ( 64 ) NOT NULL,
-	fix_sql text NOT NULL,
+    config_file text NOT NULL,
+	fix_file text NOT NULL,
 	update_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     INDEX idx_complex ( SCHEMA_NAME, TABLE_NAME )
 	) ENGINE = INNODB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_bin`
@@ -111,8 +112,8 @@ func Query(db *sql.DB, querySQL string) ([]string, []map[string]string, error) {
 	return cols, res, nil
 }
 
-// 专用于分页查询
-func QueryRowsByPage(querySQL string) ([]string, [][]string, error) {
+// 查询专用于按照字段类型返回值
+func QueryRows(querySQL string) ([]string, [][]string, error) {
 	log.Info("sql run", zap.String("sql", querySQL))
 	var (
 		cols []string

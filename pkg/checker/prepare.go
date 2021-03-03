@@ -35,6 +35,17 @@ func prepareCheckerENV(cfg *config.Cfg) error {
 		return err
 	}
 
+	// 重新初始化表结构
+	if _, _, err := db.Query(db.Engine, db.SchemaDB); err != nil {
+		return err
+	}
+	if _, _, err := db.Query(db.Engine, db.TableCheckpoint); err != nil {
+		return err
+	}
+	if _, _, err := db.Query(db.Engine, db.TableFailure); err != nil {
+		return err
+	}
+
 	// 清理断点表以及失败记录表，防止之前程序异常退出残留记录
 	if err := db.TruncateMySQLTableRecord(); err != nil {
 		return err
@@ -48,109 +59,121 @@ func prepareCheckerENV(cfg *config.Cfg) error {
 		return err
 	}
 
-	// 重新初始化表结构
-	if _, _, err := db.Query(db.Engine, db.SchemaDB); err != nil {
-		return err
-	}
-	if _, _, err := db.Query(db.Engine, db.TableCheckpoint); err != nil {
-		return err
-	}
-	if _, _, err := db.Query(db.Engine, db.TableFailure); err != nil {
-		return err
-	}
+	return nil
+}
 
-	// 1、按表划分目录
+func generateInspectorConfig(cfg *config.Cfg) error {
+	// 1、收集表统计信息
+	// 2、按表划分目录
 	// 2、初始化 checkpoint 表记录
 	// 3、生成 sync-diff-inspector 配置文件
-	for _, tbl := range cfg.TiCheckerConfig.Tables {
-		cfgPath := fmt.Sprintf("%s/%s/", cfg.InspectorConfig.ConfigOutputDir, tbl)
-		if !other.FileAndDirIsExist(cfgPath) {
-			log.Info("mkdir config output dir", zap.String("path", cfgPath))
-			if err := other.TouchPath(cfgPath, os.ModePerm); err != nil {
+	wp := workpool.New(cfg.TiCheckerConfig.WorkerThreads)
+	for _, table := range cfg.TiCheckerConfig.Tables {
+		tbl := table
+		wp.Do(func() error {
+
+			if err := db.GatherMySQLTableStatistics(cfg.TiCheckerConfig.Schema, tbl); err != nil {
 				return err
 			}
-		}
 
-		fixedPath := fmt.Sprintf("%s/%s/", cfg.InspectorConfig.FixSQLDir, tbl)
-		if !other.FileAndDirIsExist(fixedPath) {
-			log.Info("mkdir config fix-sql dir", zap.String("path", fixedPath))
-			if err := other.TouchPath(fixedPath, os.ModePerm); err != nil {
+			cfgPath := fmt.Sprintf("%s/%s/", cfg.InspectorConfig.ConfigOutputDir, tbl)
+			if !other.FileAndDirIsExist(cfgPath) {
+				log.Info("mkdir config output dir", zap.String("path", cfgPath))
+				if err := other.TouchPath(cfgPath, os.ModePerm); err != nil {
+					return err
+				}
+			}
+
+			fixedPath := fmt.Sprintf("%s/%s/", cfg.InspectorConfig.FixSQLDir, tbl)
+			if !other.FileAndDirIsExist(fixedPath) {
+				log.Info("mkdir config fix-sql dir", zap.String("path", fixedPath))
+				if err := other.TouchPath(fixedPath, os.ModePerm); err != nil {
+					return err
+				}
+			}
+
+			if err := db.InitMySQLTableCheckpointRecord(cfg, tbl); err != nil {
 				return err
 			}
-		}
 
-		if err := db.InitMySQLTableCheckpointRecord(cfg, tbl); err != nil {
-			return err
-		}
-
-		if err := db.GenerateSyncDiffInspectorCfg(cfg, tbl); err != nil {
-			return err
-		}
+			if err := db.GenerateSyncDiffInspectorCfg(cfg, tbl); err != nil {
+				return err
+			}
+			return nil
+		})
+	}
+	if err := wp.Wait(); err != nil {
+		return err
 	}
 	return nil
 }
 
 func startOnlineChecker(cfg *config.Cfg) error {
 	wp := workpool.New(cfg.TiCheckerConfig.WorkerThreads)
-	for _, table := range cfg.TiCheckerConfig.Tables {
-		tbl := table
+	for _, tbl := range cfg.TiCheckerConfig.Tables {
+		table := tbl
 		wp.Do(func() error {
 			startTime := time.Now()
-			log.Info("tichecker online check start", zap.String("table", tbl))
-
+			log.Info("tichecker online check start", zap.String("table", table))
 			// 获取 checkpoint 数据
-			rangSQLSlice, err := db.GetMySQLTableCheckpointRecordBySchemaTable(cfg.TiCheckerConfig.Schema, tbl)
-
-			log.Info("maybe table sync diff nums", zap.Int("counts", len(rangSQLSlice)))
+			rangSQLSlice, err := db.GetMySQLTableCheckpointRecordBySchemaTable(cfg.TiCheckerConfig.Schema, table)
 			if err != nil {
 				return err
 			}
 			// 开始 sync-diff-inspector 检查
-			for i := 0; i < len(rangSQLSlice); i++ {
-				fileName := fmt.Sprintf("%s/%s/%s_diff%d.toml", cfg.InspectorConfig.ConfigOutputDir,
-					tbl, tbl, i+1)
-				ok, err := inspector.SyncDiffInspector(fileName)
-				if err != nil {
+			for i, _ := range rangSQLSlice {
+				idx := i
+				// 检查失败，读取 fixed sql 文件并记录 sync_diff_inspector.failure 表
+				configFileName := fmt.Sprintf("%s/%s/%s_diff%d.toml", cfg.InspectorConfig.ConfigOutputDir,
+					table, table, idx)
+				fixedFileName := fmt.Sprintf(`%s/%s/%s_fixed%d.sql`,
+					cfg.InspectorConfig.FixSQLDir,
+					table, table, idx)
+				if err := failureRetry(
+					cfg.TiCheckerConfig.Schema,
+					table, configFileName, fixedFileName, cfg.TiCheckerConfig.CheckRetry, cfg.TiCheckerConfig.TimeSleep); err != nil {
 					return err
 				}
-				// 如果检查失败，则重试
-				if !ok {
-					for j := 0; j <= cfg.TiCheckerConfig.CheckRetry; j++ {
-						ok, err := inspector.SyncDiffInspector(fileName)
-						if err != nil {
-							return err
-						}
-						if ok {
-							// 重试检查成功，跳出当前 for 循环，继续外层 for 循环
-							goto Loop
-						}
-						// 间隔一段时间重试
-						time.Sleep(time.Duration(cfg.TiCheckerConfig.TimeSleep) * time.Second)
-					}
-
-					// 检查失败，读取 fixed sql 文件并记录 sync_diff_inspector.failure 表
-					fixedSQL := fmt.Sprintf(`%s/%s/%s_fixed%d.sql`,
-						cfg.InspectorConfig.FixSQLDir,
-						tbl, tbl, i+1)
-					if err := db.WriteMySQLTableFailureRecord(cfg.TiCheckerConfig.Schema, tbl, fixedSQL); err != nil {
-						return err
-					}
-				}
-			Loop:
-				continue
-			}
-			// 清理 checkpoint 记录
-			if err := db.ClearMySQLTableCheckpointRecordBySchemaTable(cfg.TiCheckerConfig.Schema, tbl); err != nil {
-				return err
 			}
 
 			endTime := time.Now()
-			log.Info("tichecker online check finished", zap.String("table", tbl), zap.Duration("cost", endTime.Sub(startTime)))
+			// 清理 checkpoint 记录
+			if err := db.ClearMySQLTableCheckpointRecordBySchemaTable(cfg.TiCheckerConfig.Schema, table); err != nil {
+				return err
+			}
+			log.Info("tichecker online check finished", zap.String("table", table), zap.Duration("cost", endTime.Sub(startTime)))
 			return nil
 		})
 	}
 	if err := wp.Wait(); err != nil {
 		return err
+	}
+	if !wp.IsDone() {
+		log.Warn("tichecker online check failed, please manual check")
+	}
+
+	return nil
+}
+
+func failureRetry(schema, table, configFileName, fixedFileName string, maxRetryTimes, retrySleep int) error {
+	for i := 0; i < (maxRetryTimes + 1); i++ {
+		ok, err := inspector.SyncDiffInspector(configFileName)
+		if err != nil {
+			return err
+		}
+		if ok {
+			break
+		} else {
+			if i == maxRetryTimes {
+				if err := db.WriteMySQLTableFailureRecord(schema, table, configFileName, fixedFileName); err != nil {
+					return err
+				}
+			} else {
+				// 间隔一段时间重试
+				time.Sleep(time.Duration(retrySleep) * time.Second)
+				continue
+			}
+		}
 	}
 	return nil
 }

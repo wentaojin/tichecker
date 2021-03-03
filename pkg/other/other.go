@@ -83,3 +83,25 @@ func RemovePath(path string) error {
 	}
 	return nil
 }
+
+// 数组拆分
+func SplitArray(arr []string, num int64) [][]string {
+	var segmens = make([][]string, 0)
+	max := int64(len(arr))
+	if max < num {
+		segmens = append(segmens, arr)
+		return segmens
+	}
+	quantity := max / num
+	end := int64(0)
+	for i := int64(1); i <= num; i++ {
+		qu := i * quantity
+		if i != num {
+			segmens = append(segmens, arr[i-1+end:qu])
+		} else {
+			segmens = append(segmens, arr[i-1+end:])
+		}
+		end = qu - i
+	}
+	return segmens
+}

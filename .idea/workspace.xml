@@ -1,7 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5227a6ae-760f-4f63-beb3-15ad55b3f9f7" name="Default Changelist" comment="" />
+    <list default="true" id="5227a6ae-760f-4f63-beb3-15ad55b3f9f7" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/test_dm.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/test_dm.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/conf/t_marvin_diff.tmpl" beforeDir="false" afterPath="$PROJECT_DIR$/conf/t_marvin_diff.tmpl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/conf/tichecker.toml" beforeDir="false" afterPath="$PROJECT_DIR$/conf/tichecker.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/checker.go" beforeDir="false" afterPath="$PROJECT_DIR$/db/checker.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/db.go" beforeDir="false" afterPath="$PROJECT_DIR$/db/db.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/checker/checker.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/checker/checker.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/checker/prepare.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/checker/prepare.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/config/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/config/config.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/other/other.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/other/other.go" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -100,22 +115,22 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="346" y="0" key="#go_build_github.com/WentaoJin/tichecker/cmd_(1)/0.0.1280.680@0.0.1280.680" timestamp="1614426438402" />
-    <state width="1222" height="127" key="GridCell.Tab.0.bottom" timestamp="1614436505669">
+    <state width="1237" height="123" key="GridCell.Tab.0.bottom" timestamp="1614767634881">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1222" height="127" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1614436505669" />
-    <state width="1222" height="127" key="GridCell.Tab.0.center" timestamp="1614436505669">
+    <state width="1237" height="123" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1614767634881" />
+    <state width="1237" height="123" key="GridCell.Tab.0.center" timestamp="1614767634881">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1222" height="127" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1614436505669" />
-    <state width="1222" height="127" key="GridCell.Tab.0.left" timestamp="1614436505669">
+    <state width="1237" height="123" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1614767634881" />
+    <state width="1237" height="123" key="GridCell.Tab.0.left" timestamp="1614767634881">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1222" height="127" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1614436505669" />
-    <state width="1222" height="127" key="GridCell.Tab.0.right" timestamp="1614436505669">
+    <state width="1237" height="123" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1614767634881" />
+    <state width="1237" height="123" key="GridCell.Tab.0.right" timestamp="1614767634881">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1222" height="127" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1614436505669" />
+    <state width="1237" height="123" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1614767634881" />
     <state x="142" y="0" key="SettingsEditor" timestamp="1614431522990">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
@@ -124,9 +139,9 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="311" y="57" width="658" height="566" key="find.popup/0.0.1280.680@0.0.1280.680" timestamp="1614410755637" />
-    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup" timestamp="1614426859012">
+    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup" timestamp="1614738656043">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup/0.0.1280.680@0.0.1280.680" timestamp="1614426859012" />
+    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup/0.0.1280.680@0.0.1280.680" timestamp="1614738656043" />
   </component>
 </project>

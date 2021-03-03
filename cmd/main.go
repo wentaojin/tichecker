@@ -18,7 +18,6 @@ package main
 import "C"
 import (
 	"flag"
-	"net/http"
 	"os"
 
 	"github.com/WentaoJin/tichecker/pkg/checker"
@@ -37,13 +36,6 @@ func main() {
 	// 初始化日志
 	l := zap.NewAtomicLevel()
 	log.SetLevel(l.Level())
-
-	go func() {
-		if err := http.ListenAndServe(":9696", nil); err != nil {
-			log.Fatal("http run failed", zap.Error(err))
-		}
-		os.Exit(0)
-	}()
 
 	// 读取配置文件
 	cfg, err := config.ReadConfigFile(*conf)

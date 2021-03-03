@@ -35,17 +35,23 @@ func Run(cfg *config.Cfg) error {
 		return err
 	}
 
+	// 配置文件生成
+	if err := generateInspectorConfig(cfg); err != nil {
+		return err
+	}
+
 	// online check
 	if err := startOnlineChecker(cfg); err != nil {
 		return err
 	}
+
+	endTime := time.Now()
+	log.Info("tichecker online check all table finished", zap.Duration("cost", endTime.Sub(startTime)))
 
 	// 判断上下游是否存在数据不一致
 	if err := db.GetMySQLTableFailureRecord(); err != nil {
 		return err
 	}
 
-	endTime := time.Now()
-	log.Info("tichecker online check all table finished", zap.Duration("cost", endTime.Sub(startTime)))
 	return nil
 }
