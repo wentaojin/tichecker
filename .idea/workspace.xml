@@ -2,7 +2,41 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5227a6ae-760f-4f63-beb3-15ad55b3f9f7" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/pkg/dbutil/common.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pkg/dbutil/dbconn.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pkg/dbutil/dbutil.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pkg/dbutil/index.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pkg/dbutil/query.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pkg/dbutil/retry.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pkg/dbutil/table.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pkg/dbutil/types.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pkg/diff/checkpoint.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pkg/diff/chunk.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pkg/diff/diff.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pkg/diff/merge.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pkg/diff/util.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pkg/filter/filter.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pkg/router/router.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pkg/router/selector.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/test_dm.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/conf/t_marvin_diff.tmpl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/conf/tichecker.toml" beforeDir="false" afterPath="$PROJECT_DIR$/conf/tichecker.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/checker.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/db.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inspector/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/inspector/config.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inspector/diff.go" beforeDir="false" afterPath="$PROJECT_DIR$/inspector/diff.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inspector/inspector.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/checker/checker.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/checker/prepare.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/config/config.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/other/other.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/signal/signal_posix.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/signal/signal_windows.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/utils/utils.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,10 +124,10 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="233" y="0" key="#Go_Modules_(vgo)/0.0.1280.680@0.0.1280.680" timestamp="1614395510308" />
-    <state x="367" y="160" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1614431366265">
+    <state x="367" y="160" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1615465777227">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="367" y="160" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1280.680@0.0.1280.680" timestamp="1614431366265" />
+    <state x="367" y="160" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1280.680@0.0.1280.680" timestamp="1615465777227" />
     <state x="346" y="0" key="#go_build_github.com/WentaoJin/tichecker/cmd" timestamp="1614408757174">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
@@ -122,10 +156,10 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="142" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1614431522990" />
-    <state x="311" y="57" width="658" height="566" key="find.popup" timestamp="1614410755637">
+    <state x="311" y="48" width="794" height="632" key="find.popup" timestamp="1615464960392">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="311" y="57" width="658" height="566" key="find.popup/0.0.1280.680@0.0.1280.680" timestamp="1614410755637" />
+    <state x="311" y="48" width="794" height="632" key="find.popup/0.0.1280.680@0.0.1280.680" timestamp="1615464960392" />
     <state x="303" y="1" width="672" height="678" key="search.everywhere.popup" timestamp="1614738656043">
       <screen x="0" y="0" width="1280" height="680" />
     </state>

@@ -15,41 +15,70 @@ limitations under the License.
 */
 package main
 
-import "C"
 import (
+	"context"
 	"flag"
+	"fmt"
 	"os"
+	"time"
 
-	"github.com/WentaoJin/tichecker/pkg/checker"
-	"github.com/WentaoJin/tichecker/pkg/config"
-	"github.com/WentaoJin/tichecker/pkg/signal"
+	"github.com/WentaoJin/tichecker/inspector"
+
 	"github.com/pingcap/log"
 	"go.uber.org/zap"
 )
 
 var (
-	conf = flag.String("config", "tichecker.toml", "specify the configuration file, default is tichecker.toml")
+	config = flag.String("config", "config.toml", "specify the configuration file, default is config.toml")
 )
 
 func main() {
 	flag.Parse()
-	// 初始化日志
+
+	cfg, err := inspector.NewConfig(*config)
+	if err != nil {
+		fmt.Printf("read config error: %v\n", err)
+	}
+
 	l := zap.NewAtomicLevel()
+	if err := l.UnmarshalText([]byte(cfg.LogLevel)); err != nil {
+		log.Error("invalid log level", zap.String("log level", cfg.LogLevel))
+	}
 	log.SetLevel(l.Level())
 
-	// 读取配置文件
-	cfg, err := config.ReadConfigFile(*conf)
+	ok := cfg.CheckConfig()
+	if !ok {
+		log.Fatal("there is something wrong with your config, please check it")
+		os.Exit(1)
+	}
+
+	log.Info("tichecker start", zap.String("config", cfg.String()))
+
+	ctx := context.Background()
+	if !CheckSyncState(ctx, cfg) {
+		log.Warn("check failed!!!")
+		os.Exit(1)
+	}
+	log.Info("check pass!!!")
+}
+
+func CheckSyncState(ctx context.Context, cfg *inspector.Config) bool {
+	beginTime := time.Now()
+	defer func() {
+		log.Info("check data finished", zap.Duration("cost", time.Since(beginTime)))
+	}()
+
+	d, err := inspector.NewDiff(ctx, cfg)
 	if err != nil {
-		log.Fatal("read config file failed", zap.String("file", *conf), zap.String("error", err.Error()))
+		log.Fatal("fail to initialize diff process", zap.Error(err))
 	}
 
-	// 信号量监听处理
-	signal.SetupSignalHandler(func(b bool) {
-		os.Exit(0)
-	})
-
-	// 程序运行
-	if err := checker.Run(cfg); err != nil {
-		log.Fatal("server run failed", zap.Error(err))
+	err = d.Equal()
+	if err != nil {
+		log.Fatal("check data difference failed", zap.Error(err))
 	}
+
+	d.Report.Print()
+
+	return d.Report.Result == inspector.Pass
 }

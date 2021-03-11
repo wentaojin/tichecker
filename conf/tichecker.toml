@@ -1,42 +1,113 @@
-[tichecker]
-# 下游 tidb 数据库链接串
-dsn = "marvin:marvin@tcp(192.168.2.90:5000)/?charset=utf8mb4"
-# 检查下游 tidb 目标表 schema
-schema = "dm_marvin"
-# 检查下游 tidb 目标表列表
-tables = ["t_marvin"]
-# 检查表基于该字段划分范围检查，检查失败会按要求重试
-# 该字段需要是个范围值
-# 1、建议使用全局唯一的字段，比如：时间或者全局 ID、全局 UUID 等字段
-# 2、非全局也是可以，比如：ID,NAME 联合主键，使用 ID 字段，但是可能会比较粗暴
-base-table-column = "id"
-# 检查表字段 base-table-column 是否存在索引且位于前缀，用于排序
-is-index-column = false
-# 检查表切分行数，尽可能小，会相对检查更准，但是不建议太小，否则大表会检查很久
-split-table-rows = 2000
-# tichecker 并发数
-worker-threads = 4
-# 检查失败重试等待间隔，单位：秒
-time-sleep = 10
-# 检查失败重试次数
-check-retry = 10
+# Diff Configuration.
 
-[inspector]
-# 表配置文件模板存放位置,用于读取
-# 需要手工创建目录以及按命名格式创建并修改模板文件
-# 文件名格式：table_diff.tmpl
-config-template-dir = "/home/tidb/marvin/topology/dm/template"
+######################### Global config #########################
 
-# 表配置文件输出位置 - 不能更改
-# 输出文件名格式：table_dir/table_diff{{i}}.toml
-config-output-dir = "/home/tidb/marvin/topology/dm/output"
+# 日志级别，可以设置为 info、debug
+log-level = "info"
 
-# 表检查结果输出目录 - 不能更改
-# 输出文件名格式：table_dir/table_fixed{{i}}.sql
-fix-sql-dir = "/home/tidb/marvin/topology/dm/fixed"
-
-# diff 二进制检查线程
-check-thread-count = 8
 # sync-diff-inspector 根据主键／唯一键／索引将数据划分为多个 chunk，
 # 对每一个 chunk 的数据进行对比。使用 chunk-size 设置 chunk 的大小
-chunk-size = 1000
+# 建议 chunk size  1000-10000
+chunk-size = 10000
+
+# 检查数据的线程数量
+check-thread-count = 128
+
+# 数据 checksum 检查失败，重试次数
+# use-checksum = true 必须选项
+failed-retry-times = 3
+
+# 数据 checksum 检查失败，重试间隔 单位：秒
+# use-checksum = true 必须选项
+failed-retry-sleep = 10
+
+# 下游 checkpoint 元数据库
+checkpoint-schema = "sync_diff_inspector"
+
+# 抽样检查的比例，如果设置为 100 则检查全部数据
+sample-percent = 100
+
+# 通过计算 chunk 的 checksum 来对比数据，如果不开启则逐行对比数据
+use-checksum = true
+
+# 如果设置为 true 则只会通过计算 checksum 来校验数据，如果上下游的 checksum 不一致也不会查出数据再进行校验
+only-use-checksum = false
+
+# 是否使用上次校验的 checkpoint，如果开启，则只校验上次未校验以及校验失败的 chunk
+use-checkpoint = false
+
+# 不对比数据
+ignore-data-check = false
+
+# 不对比表结构
+ignore-struct-check = false
+
+# fix 修复 sql
+fix-sql-file = "fix_single.sql"
+
+######################### Tables config #########################
+
+# 配置需要对比的目标数据库 tidb 中的表
+[[check-tables]]
+# 库的名称
+schema = "sbtest"
+# 需要检查的表的名称
+tables = ["sbtest1"]
+
+# 配置该表对应分表配置
+# [[table-config]]
+# tidb 目标库名
+# schema = "sbtest"
+# tidb 目标库表名
+# table = "sbtest1"
+# 是否是分库分表场景
+# is-sharding = true
+# 对比查询范围
+# range = "id >= 3"
+
+# 源数据表的配置 mysql
+#[[table-config.source-tables]]
+#instance-id = "MySQL-1"
+#schema = "sbtest"
+#table = "sbtest1"
+
+#[[table-config.source-tables]]
+#instance-id = "MySQL-2"
+#schema = "sbtest"
+#table = "sbtest1"
+
+# 通过 table-rule 来设置上游分表与下游总表的映射关系。可以只配置 schema 或者 table 的映射关系，也可以都配置
+[[table-rules]]
+    # schema-pattern 和 table-pattern 支持通配符 *?
+    # 在 source-db 中配置的上游数据库中所有满足 schema-pattern 和 table-pattern 规则的表都为 target-schema.target-table 的分表
+    schema-pattern = "test"
+    table-pattern = "table-*"
+    target-schema = "test"
+    target-table = "table-0"
+
+
+######################### Databases config #########################
+
+# 源数据库实例的配置
+[[source-db]]
+    host = "172.16.4.79"
+    port = 3307
+    user = "root"
+    password = "marvin"
+    instance-id = "MySQL-1"
+
+# 源数据库实例的配置
+[[source-db]]
+    host = "172.16.4.95"
+    port = 3308
+    user = "root"
+    password = "marvin"
+    instance-id = "MySQL-2"
+
+# 目标数据库实例的配置
+[target-db]
+    host = "172.16.4.59"
+    port = 5000
+    user = "root"
+    password = ""
+    instance-id = "target-1"
