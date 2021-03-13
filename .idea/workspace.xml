@@ -2,41 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5227a6ae-760f-4f63-beb3-15ad55b3f9f7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/pkg/dbutil/common.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pkg/dbutil/dbconn.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pkg/dbutil/dbutil.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pkg/dbutil/index.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pkg/dbutil/query.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pkg/dbutil/retry.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pkg/dbutil/table.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pkg/dbutil/types.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pkg/diff/checkpoint.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pkg/diff/chunk.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pkg/diff/diff.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pkg/diff/merge.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pkg/diff/util.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pkg/filter/filter.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pkg/router/router.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pkg/router/selector.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/test_dm.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/conf/t_marvin_diff.tmpl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/conf/tichecker.toml" beforeDir="false" afterPath="$PROJECT_DIR$/conf/tichecker.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/checker.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/db.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inspector/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/inspector/config.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inspector/diff.go" beforeDir="false" afterPath="$PROJECT_DIR$/inspector/diff.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inspector/inspector.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/checker/checker.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/checker/prepare.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/config/config.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/other/other.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/signal/signal_posix.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/signal/signal_windows.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/utils/utils.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,7 +50,7 @@
       <recent name="C:\Marvin\Projects\goModules\tichecker\cmd" />
     </key>
   </component>
-  <component name="RunManager" selected="Go Build.go build github.com/WentaoJin/tichecker/cmd (1)">
+  <component name="RunManager" selected="Go Build.go build github.com/WentaoJin/tichecker/cmd">
     <configuration name="go build github.com/WentaoJin/tichecker/cmd (1)" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="tichecker" />
       <working_directory value="$PROJECT_DIR$" />
@@ -104,8 +71,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Go Build.go build github.com/WentaoJin/tichecker/cmd (1)" />
         <item itemvalue="Go Build.go build github.com/WentaoJin/tichecker/cmd" />
+        <item itemvalue="Go Build.go build github.com/WentaoJin/tichecker/cmd (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -136,22 +103,22 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="346" y="0" key="#go_build_github.com/WentaoJin/tichecker/cmd_(1)/0.0.1280.680@0.0.1280.680" timestamp="1614426438402" />
-    <state width="1237" height="123" key="GridCell.Tab.0.bottom" timestamp="1614776170855">
+    <state width="1237" height="123" key="GridCell.Tab.0.bottom" timestamp="1615616098144">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="123" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1614776170855" />
-    <state width="1237" height="123" key="GridCell.Tab.0.center" timestamp="1614776170854">
+    <state width="1237" height="123" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1615616098144" />
+    <state width="1237" height="123" key="GridCell.Tab.0.center" timestamp="1615616098143">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="123" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1614776170854" />
-    <state width="1237" height="123" key="GridCell.Tab.0.left" timestamp="1614776170854">
+    <state width="1237" height="123" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1615616098143" />
+    <state width="1237" height="123" key="GridCell.Tab.0.left" timestamp="1615616098143">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="123" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1614776170854" />
-    <state width="1237" height="123" key="GridCell.Tab.0.right" timestamp="1614776170855">
+    <state width="1237" height="123" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1615616098143" />
+    <state width="1237" height="123" key="GridCell.Tab.0.right" timestamp="1615616098144">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="123" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1614776170855" />
+    <state width="1237" height="123" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1615616098144" />
     <state x="142" y="0" key="SettingsEditor" timestamp="1614431522990">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
