@@ -24,7 +24,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/WentaoJin/tichecker/pkg/utils"
+	"github.com/wentaojin/tichecker/pkg/utils"
 
 	"go.uber.org/atomic"
 	"go.uber.org/zap"
@@ -32,8 +32,8 @@ import (
 	"github.com/pingcap/log"
 	"github.com/pingcap/parser/model"
 
-	"github.com/WentaoJin/tichecker/pkg/dbutil"
 	"github.com/juju/errors"
+	"github.com/wentaojin/tichecker/pkg/dbutil"
 )
 
 var (

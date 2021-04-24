@@ -25,7 +25,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/WentaoJin/tichecker/pkg/dbutil"
+	"github.com/wentaojin/tichecker/pkg/dbutil"
 
 	"github.com/juju/errors"
 	"github.com/pingcap/log"

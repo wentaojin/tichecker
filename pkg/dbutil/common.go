@@ -23,7 +23,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/WentaoJin/tichecker/pkg/utils"
+	"github.com/wentaojin/tichecker/pkg/utils"
 
 	"github.com/pingcap/tidb/sessionctx/stmtctx"
 	"github.com/pingcap/tidb/types"

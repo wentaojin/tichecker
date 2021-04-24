@@ -26,10 +26,10 @@ import (
 	"github.com/pingcap/errors"
 	"go.uber.org/zap"
 
-	"github.com/WentaoJin/tichecker/pkg/router"
+	"github.com/wentaojin/tichecker/pkg/router"
 
-	"github.com/WentaoJin/tichecker/pkg/dbutil"
 	"github.com/pingcap/log"
+	"github.com/wentaojin/tichecker/pkg/dbutil"
 )
 
 const (

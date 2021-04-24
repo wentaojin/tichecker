@@ -20,10 +20,10 @@ import (
 	"log"
 	"strings"
 
-	"github.com/WentaoJin/tichecker/pkg/dbutil"
-	"github.com/WentaoJin/tichecker/pkg/utils"
 	"github.com/pingcap/parser/model"
 	"github.com/pingcap/tidb/types"
+	"github.com/wentaojin/tichecker/pkg/dbutil"
+	"github.com/wentaojin/tichecker/pkg/utils"
 	"go.uber.org/zap"
 )
 

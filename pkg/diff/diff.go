@@ -27,16 +27,16 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/WentaoJin/tichecker/pkg/utils"
+	"github.com/wentaojin/tichecker/pkg/utils"
 
 	"github.com/pingcap/failpoint"
 
 	"go.uber.org/zap"
 
-	"github.com/WentaoJin/tichecker/pkg/dbutil"
 	"github.com/juju/errors"
 	"github.com/pingcap/log"
 	"github.com/pingcap/parser/model"
+	"github.com/wentaojin/tichecker/pkg/dbutil"
 )
 
 var (

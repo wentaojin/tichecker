@@ -22,7 +22,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/WentaoJin/tichecker/inspector"
+	"github.com/wentaojin/tichecker/inspector"
 
 	"github.com/pingcap/log"
 	"go.uber.org/zap"

@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5227a6ae-760f-4f63-beb3-15ad55b3f9f7" name="Default Changelist" comment="" />
+    <list default="true" id="5227a6ae-760f-4f63-beb3-15ad55b3f9f7" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inspector/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/inspector/config.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inspector/diff.go" beforeDir="false" afterPath="$PROJECT_DIR$/inspector/diff.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/dbutil/common.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/dbutil/common.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/diff/checkpoint.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/diff/checkpoint.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/diff/chunk.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/diff/chunk.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/diff/diff.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/diff/diff.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/diff/merge.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/diff/merge.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/diff/util.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/diff/util.go" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -120,10 +132,10 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="142" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1614431522990" />
-    <state x="311" y="48" width="794" height="632" key="find.popup" timestamp="1615464960392">
+    <state x="311" y="48" width="794" height="632" key="find.popup" timestamp="1619229220495">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="311" y="48" width="794" height="632" key="find.popup/0.0.1280.680@0.0.1280.680" timestamp="1615464960392" />
+    <state x="311" y="48" width="794" height="632" key="find.popup/0.0.1280.680@0.0.1280.680" timestamp="1619229220495" />
     <state x="303" y="1" width="672" height="678" key="search.everywhere.popup" timestamp="1614738656043">
       <screen x="0" y="0" width="1280" height="680" />
     </state>

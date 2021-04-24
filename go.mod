@@ -1,4 +1,4 @@
-module github.com/WentaoJin/tichecker
+module github.com/wentaojin/tichecker
 
 go 1.15
 

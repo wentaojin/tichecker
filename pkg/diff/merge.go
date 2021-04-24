@@ -19,8 +19,8 @@ import (
 	"log"
 	"strconv"
 
-	"github.com/WentaoJin/tichecker/pkg/dbutil"
 	"github.com/pingcap/parser/model"
+	"github.com/wentaojin/tichecker/pkg/dbutil"
 	"go.uber.org/zap"
 )
 

@@ -26,16 +26,16 @@ import (
 
 	"go.uber.org/zap"
 
-	"github.com/WentaoJin/tichecker/pkg/diff"
-	"github.com/WentaoJin/tichecker/pkg/utils"
+	"github.com/wentaojin/tichecker/pkg/diff"
+	"github.com/wentaojin/tichecker/pkg/utils"
 
-	"github.com/WentaoJin/tichecker/pkg/dbutil"
+	"github.com/wentaojin/tichecker/pkg/dbutil"
 
 	"github.com/pingcap/errors"
 	"github.com/pingcap/log"
 
-	"github.com/WentaoJin/tichecker/pkg/router"
 	tidbconfig "github.com/pingcap/tidb/config"
+	"github.com/wentaojin/tichecker/pkg/router"
 )
 
 // Diff contains two sql DB, used for comparing.
