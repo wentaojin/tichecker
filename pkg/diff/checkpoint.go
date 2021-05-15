@@ -168,8 +168,9 @@ func createCheckpointTable(ctx context.Context, db *sql.DB, checkpointSchemaName
 	+--------+-------+-----------+-------------------+------------------+------------------+---------+----------------------------------+---------------------+
 	note: config_hash is the hash value for the config, if config is changed, will clear the history checkpoint.
 	*/
+	createSql := fmt.Sprintf("CREATE TABLE IF NOT EXISTS `%s`.`summary`(", checkpointSchemaName)
 	createSummaryTableSQL :=
-		"CREATE TABLE IF NOT EXISTS `sync_diff_inspector`.`summary`(" +
+		createSql +
 			"`schema` varchar(64), `table` varchar(64)," +
 			"`chunk_num` int not null default 0," +
 			"`check_success_num` int not null default 0," +
@@ -194,8 +195,9 @@ func createCheckpointTable(ctx context.Context, db *sql.DB, checkpointSchemaName
 	|        2 | target-1    | diff   | test1 | (`a` >= ? AND `a` < ? AND TRUE) |  91f3020527 |  .....    | success | 2019-03-26 12:41:42 |
 	+----------+-------------+--------+-------+---------------------------------+-------------+-----------+---------+---------------------+
 	*/
+	createSql = fmt.Sprintf("CREATE TABLE IF NOT EXISTS `%s`.`chunk`(", checkpointSchemaName)
 	createChunkTableSQL :=
-		"CREATE TABLE IF NOT EXISTS `sync_diff_inspector`.`chunk`(" +
+		createSql +
 			"`chunk_id` int," +
 			"`instance_id` varchar(64)," +
 			"`schema` varchar(64)," +
